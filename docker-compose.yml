@@ -31,6 +31,22 @@ services:
     networks:
       - app-network
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - 5173:5173
+    entrypoint: npm run dev -- --host 0.0.0.0
+    volumes:
+      - ./frontend:/var/www/frontend
+      - ./frontend/node_modules:/var/www/frontend/node_modules
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
   nginx-proxy:
     image: jwilder/nginx-proxy
     ports:
@@ -57,6 +73,7 @@ services:
     expose:
       - "80"
       - "8080"
+      - "5173"
     depends_on:
       - backend
       - nginx-proxy

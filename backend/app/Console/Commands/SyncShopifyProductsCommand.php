@@ -67,9 +67,9 @@ class SyncShopifyProductsCommand extends Command
             headers: ['Total', 'Created', 'Updated', 'Failed'],
             rows: [[
                 $result->total,
-                "<fg=green>{$result->created}</>",
-                "<fg=yellow>{$result->updated}</>",
-                $result->failed > 0 ? "<fg=red>{$result->failed}</>" : '0',
+                $result->created,
+                $result->updated,
+                $result->failed > 0 ? $result->failed : '0',
             ]],
         );
     }
