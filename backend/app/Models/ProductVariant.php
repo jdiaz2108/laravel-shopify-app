@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\SlugGenerator;
 use App\Traits\UseSlugAsKey;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductVariant extends Model
@@ -21,6 +22,11 @@ class ProductVariant extends Model
         'inventory_quantity',
         'synced_at',
     ];
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
 
     protected static function boot(): void
     {

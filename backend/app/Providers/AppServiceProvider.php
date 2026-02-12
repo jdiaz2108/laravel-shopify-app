@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Contracts\Shopify\ProductRepositoryInterface;
+use App\Contracts\Shopify\ProductVariantRepositoryInterface;
 use App\Repositories\Shopify\ProductRepository;
+use App\Repositories\Shopify\ProductVariantRepository;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -13,11 +15,19 @@ use Illuminate\Validation\Rules\Password;
 class AppServiceProvider extends ServiceProvider
 {
     /**
+     * @var array<string, string>
+     */
+    public array $bindings = [
+        ProductVariantRepositoryInterface::class => ProductVariantRepository::class,
+        ProductRepositoryInterface::class => ProductRepository::class,
+    ];
+
+    /**
      * Register any application services.
      */
     public function register(): void
     {
-        $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+        //
     }
 
     /**
