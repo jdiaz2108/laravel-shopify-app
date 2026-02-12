@@ -1,0 +1,9 @@
+extend type Query {
+    products(filter: ProductFilter): [Product!]!
+        @paginate(
+            defaultCount: 10
+            builder: "App\\GraphQL\\Queries\\ProductQuery@builder"
+        )
+
+    product(slug: ID! @eq): Product @find
+}

@@ -1,0 +1,7 @@
+input ProductFilter {
+    slug: ID
+    shopify_id: String
+    title: String
+    status: String
+    product_type: String
+}

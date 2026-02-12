@@ -1,0 +1,11 @@
+type ProductVariant {
+    slug: ID!
+    shopify_id: String!
+    title: String!
+    sku: String
+    price: String!
+    inventory_quantity: Int!
+    synced_at: DateTime!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
