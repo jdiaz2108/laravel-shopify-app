@@ -11,19 +11,19 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
-final class ProductSyncService
+final readonly class ProductSyncService
 {
     public function __construct(
-        private readonly ShopifyApiService $shopifyApiService,
-        private readonly ProductRepositoryInterface $productRepository,
+        private ShopifyApiService $shopifyApiService,
+        private ProductRepositoryInterface $productRepository,
     ) {}
 
     public function syncAll(): SyncResultDTO
     {
         try {
             $products = $this->shopifyApiService->getAllProducts();
-        } catch (Exception $e) {
-            throw new Exception("Failed to fetch products from Shopify: {$e->getMessage()}", previous: $e);
+        } catch (Exception $exception) {
+            throw new Exception("Failed to fetch products from Shopify: {$exception->getMessage()}", previous: $exception);
         }
 
         return $this->syncCollection($products);
@@ -53,14 +53,14 @@ final class ProductSyncService
 
                     if ($existing === null) {
                         $this->productRepository->createFromDTO($product);
-                        $created++;
+                        ++$created;
                     } else {
                         $this->productRepository->updateFromDTO($existing, $product);
-                        $updated++;
+                        ++$updated;
                     }
                 });
-            } catch (Throwable $e) {
-                $failed++;
+            } catch (Throwable) {
+                ++$failed;
             }
         }
 

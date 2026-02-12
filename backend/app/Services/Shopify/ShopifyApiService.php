@@ -8,10 +8,10 @@ use App\DTOs\Shopify\ShopifyProductDTO;
 use App\Infrastructure\Shopify\ShopifyClient;
 use Illuminate\Support\Collection;
 
-final class ShopifyApiService
+final readonly class ShopifyApiService
 {
     public function __construct(
-        private readonly ShopifyClient $client,
+        private ShopifyClient $client,
     ) {}
 
     public function getAllProducts(int $batchSize = 50): Collection
@@ -26,7 +26,7 @@ final class ShopifyApiService
             $allProducts = $allProducts->merge($products);
 
             $pageInfo = $products->count() < $batchSize ? null : $this->resolveNextPageInfo($products);
-            $page++;
+            ++$page;
         } while ($pageInfo !== null);
 
         return $allProducts;

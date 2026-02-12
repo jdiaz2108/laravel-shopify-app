@@ -12,16 +12,21 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
-final class ShopifyClient
+final readonly class ShopifyClient
 {
     private const TOKEN_CACHE_KEY = 'shopify_access_token';
+
     private const TOKEN_BUFFER_SECS = 60;
+
     private const GRAPHQL_API_PATH = '/admin/api/2026-01/graphql.json';
+
     private const TOKEN_PATH = '/admin/oauth/access_token';
 
-    private readonly string $shop;
-    private readonly string $clientId;
-    private readonly string $clientSecret;
+    private string $shop;
+
+    private string $clientId;
+
+    private string $clientSecret;
 
     public function __construct()
     {

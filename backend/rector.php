@@ -24,7 +24,9 @@ return RectorConfig::configure()
         privatization: true,
         earlyReturn: true,
         rectorPreset: true,
+
     )
+    ->withAttributesSets(symfony: true, doctrine: true)
     ->withPhpSets(php84: true)
     ->withTypeCoverageLevel(0)
     ->withDeadCodeLevel(0)
@@ -38,5 +40,4 @@ return RectorConfig::configure()
         StaticCallOnNonStaticToInstanceCallRector::class => [
             __DIR__ . '/routes',
         ],
-        ReadOnlyPropertyRector::class
     ]);
