@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('shopify_id')->nullable();
             $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('vendor')->nullable();
-            $table->string('product_type')->nullable();
-            $table->string('handle')->nullable();
-            $table->string('status')->nullable();
-            $table->string('featured_image_url')->nullable();
+            $table->string('sku')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->integer('inventory_quantity')->nullable();
             $table->timestamp('synced_at')->nullable();
 
             $table->string('slug')->nullable();
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_variants');
     }
 };
