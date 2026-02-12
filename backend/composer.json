@@ -92,7 +92,7 @@
         ],
         "rector": "rector",
         "test:rector": "rector --dry-run",
-        "test:types": "phpstan analyse"
+        "test:types": "phpstan analyse --memory-limit 512M"
     },
     "extra": {
         "laravel": {

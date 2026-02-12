@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 final readonly class ProductQuery
 {
-    /** @param  array{}  $args */
     public function builder(null $_, array $args): Builder
     {
         $query = Product::query();

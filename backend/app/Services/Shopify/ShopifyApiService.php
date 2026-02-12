@@ -51,6 +51,6 @@ final readonly class ShopifyApiService
     {
         $last = $products->last();
 
-        return $last?->pageInfo ?? null;
+        return $last?->pageInfo;
     }
 }
