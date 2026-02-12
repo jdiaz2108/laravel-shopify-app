@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Helpers\SlugGenerator;
 use App\Traits\UseSlugAsKey;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,7 @@ class Product extends Model
 {
     use SoftDeletes;
     use UseSlugAsKey;
+    use HasFactory;
 
     protected $fillable = [
         'shopify_id',
