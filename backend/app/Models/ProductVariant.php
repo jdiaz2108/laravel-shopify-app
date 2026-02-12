@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Helpers\SlugGenerator;
@@ -31,7 +33,7 @@ class ProductVariant extends Model
     protected static function boot(): void
     {
         parent::boot();
-        self::creating(function (ProductVariant $model) {
+        self::creating(function (ProductVariant $model): void {
             $model['slug'] = SlugGenerator::generate(length: 10);
         });
     }

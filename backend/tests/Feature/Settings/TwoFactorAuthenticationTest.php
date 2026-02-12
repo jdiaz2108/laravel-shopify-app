@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature\Settings;
 
 use App\Models\User;
@@ -8,7 +10,7 @@ use Inertia\Testing\AssertableInertia as Assert;
 use Laravel\Fortify\Features;
 use Tests\TestCase;
 
-class TwoFactorAuthenticationTest extends TestCase
+final class TwoFactorAuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
